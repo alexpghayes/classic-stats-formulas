@@ -1,0 +1,146 @@
+---
+title: "Hypothesis tests for people who are over it"
+author: "Alex Hayes"
+date: "`r Sys.Date()`"
+output: pdf_document
+classoption: landscape
+urlcolor: blue
+geometry: margin=1.5cm
+header-includes:
+  \usepackage{float}
+  \usepackage{makecell}
+---
+
+### Sampling distributions
+
+Tests to include:
+
+Z-test for population proportion
+
+Suppose that $X_i$ are independent and identically $\NormalD{\mu}{\sigma^2}$.
+
+## Notation
+
+## Exact tests
+
+### One sample tests
+
+\renewcommand{\arraystretch}{2.5}
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+     \hline
+    
+    one sample z-test & $\mu$ unknown, $\sigma^2$ known & $H_0: \mu = \mu_0$ & $Z_\text{obs} = \displaystyle {\bar x - \mu_0 \over {\sigma \over \sqrt n}}$ & N(0, 1) & $2 \. P(Z < -|Z_\text{obs}|)$ \\
+    
+    one sample t-test & $\mu, \sigma^2$ unknown & $H_0: \mu = \mu_0$ & $T_\text{obs} = \displaystyle {\bar x - \mu_0 \over {s \over \sqrt n}}$ & $t_{n-1}$ & $2 \. P(t_{n-1} < -|T_\text{obs}|)$ \\
+    
+    TODO & $\mu, \sigma^2$ unknown & $H_0: \sigma^2 = \sigma^2_0$ & $TODO = \displaystyle {(n - 1) \. s^2 \over \sigma^2_0}$ & $\chi^2_{n-1}$ & TODO \\
+    
+    sign test & none & $H_0: m = m_0$ & $B_\text{obs} = \sum_i I_{X_i > m_0}$ & Binomial($\sum_i I_{X_i \neq m_0}, \frac 12$) & $2 \cdot \min(P(B \ge B_\text{obs}), P(B \le B_\text{obs}))$
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+### Two sample tests
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+     \hline
+    
+    two sample z-test &
+    \thead{$\mu_1, \mu_2$ unknown \\ $\sigma_1^2, \sigma_2^2$ known} &
+    $H_0: \mu_1 - \mu_2 = \delta_0$ &
+    $Z_\text{obs} = \displaystyle {(\bar x - \bar y) - \delta_0 \over \sqrt{{\sigma_1^2 \over n_1} + {\sigma_2^2 \over n_2}}}$ &
+    N(0, 1) &
+    $2 \. P(Z < -|Z_\text{obs}|)$ \\
+    
+    equal variance t-test &
+    \thead{$\mu_1, \mu_2$ \\ $\sigma_1^2 = \sigma_2^2$ unknown} &
+    $H_0: \mu_1 - \mu_2 = \delta_0$ &
+    $T_\text{obs} = \displaystyle {(\bar x - \bar y) - \delta_0 \over 
+      s_\text{pooled} \sqrt{{1 \over n_1} + {1 \over n_2}}}$ &
+    $t_{n-1}$ &
+    $2 \. P(t_{n_1 + n_2 - 2} < -|T_\text{obs}|)$ \\
+    
+    welch's t-test &
+    \thead{$\mu_1, \mu_2$ \\ $\sigma_1^2 \neq \sigma_2^2$ unknown} &
+    $H_0: \mu_1 - \mu_2 = \delta_0$ &
+    $T_\text{obs} = \displaystyle {(\bar x - \bar y) - \delta_0 \over 
+      \sqrt{{s_1^2 \over n_1} + {s_2^2 \over n_2}}}$ &
+    $t_\nu$ &
+    $2 \. P(t_\nu < -|T_\text{obs}|)$ \\
+    
+    F-test for equal variance &
+    \thead{$\mu_1, \mu_2$ \\ $\sigma_1^2, \sigma_2^2$ unknown} &
+    $H_0: \sigma_1^2 = \sigma_2^2$ &
+    $F_\text{obs} = \displaystyle {s_1^2 \over s_2^2}$ &
+    $F_{n_1 - 1, n_2 - 1}$ &
+    TODO \\
+
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+where
+
+\begin{align}
+s_\text{pooled} &= \sqrt{{(n_1 - 1) \. s_1^2 + (n_2 - 1) \. s_2^2 \over n_1 + n_2 - 2}} \\
+\nu &= { \left({s_1^2 \over n_1} + {s_2^2 \over n_2}\right)^2 \over
+  {\left({s_1^2 \over n_1} \right)^2 \over n_1 - 1} +
+  {\left({s_2^2 \over n_2} \right)^2 \over n_2 - 1}
+}
+\end{align}
+
+### Paired two-sample tests
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+     \hline
+    
+    paired z-test & $\mu$ unknown, $\sigma^2$ known & $H_0: \mu = \mu_0$ & $Z_\text{obs} = \displaystyle {\bar x - \mu_0 \over {\sigma \over \sqrt n}}$ & N(0, 1) & $2 \. P(Z < -|Z_\text{obs}|)$ \\
+    
+    paired t-test & $\mu, \sigma^2$ unknown & $H_0: \mu = \mu_0$ & $T_\text{obs} = \displaystyle {\bar x - \mu_0 \over {s \over \sqrt n}}$ & $t_{n-1}$ & $2 \. P(t_{n-1} < -|T_\text{obs}|)$ \\
+    
+    paired sign test & TODO & TODO & TODO & TODO & TODO
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+
+### Related to linear regression and ANOVA
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+     \hline
+    
+    one-way anova / F-tests & $\mu$ unknown, $\sigma^2$ known & $H_0: \mu = \mu_0$ & $Z_\text{obs} = \displaystyle {\bar x - \mu_0 \over {\sigma \over \sqrt n}}$ & N(0, 1) & $2 \. P(Z < -|Z_\text{obs}|)$ \\
+    
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+- Tukey's HSD
+- Tests for coefficients (intercept and slope in simple linear regression)
+- Overall F-test on linear regression coefficients
+
+
+### Nonparametric tests
+
+- Kruskal-Wallis
+- Rank-Sum
+- Signed-Rank
+
+Bootstrap and permutation (parametric, one and two sample, paired)

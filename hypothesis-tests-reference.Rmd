@@ -8,13 +8,9 @@ header-includes:
   \usepackage{makecell}
 ---
 
-## Notation and Test Assumptions - Upcoming
-
-## Exact tests
+\renewcommand{\arraystretch}{2.5}
 
 ### One sample tests
-
-\renewcommand{\arraystretch}{2.5}
 
 \begin{figure}[H]
   \begin{center}
@@ -23,13 +19,30 @@ header-includes:
     name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
      \hline
     
-    one sample z-test & $\mu$ unknown, $\sigma^2$ known & $H_0: \mu = \mu_0$ & $Z_\text{obs} = \displaystyle {\bar x - \mu_0 \over {\sigma \over \sqrt n}}$ & N(0, 1) & $2 \cdot P(Z < -|Z_\text{obs}|)$ \\
+    one sample z-test & $\mu$ unknown, $\sigma^2$ known &
+    $H_0: \mu = \mu_0$ &
+    $Z_\text{obs} = \displaystyle {\bar x - \mu_0 \over {\sigma \over \sqrt n}}$ &
+    N(0, 1) &
+    $2 \cdot P(Z < -|Z_\text{obs}|)$ \\
     
-    one sample t-test & $\mu, \sigma^2$ unknown & $H_0: \mu = \mu_0$ & $T_\text{obs} = \displaystyle {\bar x - \mu_0 \over {s \over \sqrt n}}$ & $t_{n-1}$ & $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
+    one sample t-test &
+    $\mu, \sigma^2$ unknown &
+    $H_0: \mu = \mu_0$ & $T_\text{obs} = \displaystyle {\bar x - \mu_0 \over {s \over \sqrt n}}$ &
+    $t_{n-1}$ &
+    $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
     
-    TODO & $\mu, \sigma^2$ unknown & $H_0: \sigma^2 = \sigma^2_0$ & $TODO = \displaystyle {(n - 1) \cdot s^2 \over \sigma^2_0}$ & $\chi^2_{n-1}$ & TODO \\
+    TODO &
+    $\mu, \sigma^2$ unknown &
+    $H_0: \sigma^2 = \sigma^2_0$ &
+    $TODO = \displaystyle {(n - 1) \cdot s^2 \over \sigma^2_0}$ &
+    $\chi^2_{n-1}$ &
+    TODO \\
     
-    sign test & none & $H_0: m = m_0$ & $B_\text{obs} = \sum_i I_{X_i > m_0}$ & Binomial($\sum_i I_{X_i \neq m_0}, \frac 12$) & $2 \cdot \min(P(B \ge B_\text{obs}), P(B \le B_\text{obs}))$
+    sign test &
+    none & $H_0: m = m_0$ &
+    $B_\text{obs} = \sum_i I_{X_i > m_0}$ &
+    Binomial($\sum_i I_{X_i \neq m_0}, \frac 12$) &
+    $2 \cdot \min(P(B \ge B_\text{obs}), P(B \le B_\text{obs}))$
     \end{tabular}
   \end{center}
 \end{figure}
@@ -87,7 +100,9 @@ s_\text{pooled} &= \sqrt{{(n_1 - 1) \cdot s_1^2 + (n_2 - 1) \cdot s_2^2 \over n_
 }
 \end{align}
 
-### Paired two-sample tests
+### Paired two-sample tests (incomplete, don't trust these yet)
+
+Suppose $x_i$ is paired with $y_i$. Then let $d_i = x_i - y_i$.
 
 \begin{figure}[H]
   \begin{center}
@@ -95,12 +110,26 @@ s_\text{pooled} &= \sqrt{{(n_1 - 1) \cdot s_1^2 + (n_2 - 1) \cdot s_2^2 \over n_
     
     name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
      \hline
+
+    paired z-test &
+    $\mu$ unknown, $\sigma^2$ known &
+    $H_0: \mu_1 - \mu_2 = \delta_0$ &
+    $Z_\text{obs} = \displaystyle {\bar d - \mu_0 \over {\sigma \over \sqrt n}}$ & N(0, 1) &
+    $2 \cdot P(Z < -|Z_\text{obs}|)$ \\
     
-    paired z-test & TODO & TODO & TODO & TODO & TODO \\
+    paired t-test & 
+    $\mu, \sigma^2$ unknown &
+    $H_0: \mu_1 - \mu_2 = \delta_0$ &
+    $T_\text{obs} = \displaystyle {\bar d - \mu_0 \over {s \over \sqrt n}}$ & $t_{n-1}$ &
+    $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
     
-    paired t-test & TODO & TODO & TODO & TODO & TODO \\
+    paired sign test &
+    none &
+    $H_0: m_1 - m_2 = \delta_0$ &
+    TODO & 
+    TODO &
+    TODO
     
-    paired sign test & TODO & TODO & TODO & TODO & TODO
     \end{tabular}
   \end{center}
 \end{figure}
@@ -116,15 +145,40 @@ The tests for $\beta_0$ and $\beta_1$ are for simple linear regression only.
     name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
      \hline
     
-    one-way anova / F-tests & TODO & TODO & TODO & TODO & TODO \\
+    one-way anova / F-tests &
+    TODO &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
     
-    tukey's honestly significant differences & TODO & TODO & TODO & TODO & TODO \\
+    tukey's honestly significant differences &
+    TODO &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
     
-    T-test for $\beta_0$ & TODO & TODO & TODO & TODO & TODO \\
+    T-test for $\beta_0$ &
+    TODO &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
     
-    T-test for $\beta_1$ & TODO & TODO & TODO & TODO & TODO \\
+    T-test for $\beta_1$ &
+    TODO &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
     
-    overall F-test for linear model & TODO & TODO & TODO & TODO & TODO \\
+    overall F-test for linear model &
+    TODO &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
     
     \end{tabular}
   \end{center}

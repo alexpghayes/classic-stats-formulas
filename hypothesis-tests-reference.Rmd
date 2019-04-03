@@ -95,7 +95,7 @@ header-includes:
     $t_\nu$ &
     $2 \cdot P(t_\nu < -|T_\text{obs}|)$ \\
     
-    F-test for equal variance &
+    f-test for equal variance &
     \thead{$\mu_1, \mu_2$ \\ $\sigma_1^2, \sigma_2^2$ unknown} &
     $H_0: \sigma_1^2 = \sigma_2^2$ &
     $F_\text{obs} = \displaystyle {s_1^2 \over s_2^2}$ &
@@ -161,39 +161,34 @@ The tests for $\beta_0$ and $\beta_1$ are for simple linear regression only.
   \begin{center}
     \begin{tabular}{lccccc}
     
-    name & known parameters & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+    name & null hypothesis & test statistic & null distribution & p-value (two sided) \\
      \hline
     
-    one-way anova / F-tests &
-    TODO &
-    TODO &
-    TODO &
-    TODO &
-    TODO \\
+    one-way anova / f-tests &
+    $H_0: \mu_1 = ... = \mu_k$ &
+    $F_\text{obs} = {\text{MSTreatment} \over \text{MSError}}$ &
+    $F_{k - 1, n - k}$ &
+    $P(F_{k - 1, n - k} > F_\text{obs})$ \\
     
     tukey's honestly significant differences &
     TODO &
     TODO &
     TODO &
-    TODO &
     TODO \\
     
-    T-test for $\beta_0$ &
-    TODO &
-    TODO &
-    TODO &
-    TODO &
-    TODO \\
+    t-test for $\beta_0$ &
+    $H_0: \beta_0 = c$ &
+    $T_\text{obs} = \displaystyle {\hat \beta_0 - c \over \hat \sigma \sqrt{\frac 1n + {\bar x^2 \over S_{xx}}}}$ &
+    $t_{n-2}$ &
+    $2 \cdot P(T < -|T_\text{obs}|)$ \\
     
-    T-test for $\beta_1$ &
-    TODO &
-    TODO &
-    TODO &
-    TODO &
-    TODO \\
+    t-test for $\beta_1$ &
+    $H_0: \beta_1 = c$ &
+    $T_\text{obs} = \displaystyle {\hat \beta_1 - c \over \sqrt{\hat \sigma^2 / S_{xx}}}$ &
+    $t_{n-2}$ &
+    $2 \cdot P(T < -|T_\text{obs}|)$ \\
     
-    overall F-test for linear model &
-    TODO &
+    overall f-test for linear model &
     TODO &
     TODO &
     TODO &
@@ -202,6 +197,16 @@ The tests for $\beta_0$ and $\beta_1$ are for simple linear regression only.
     \end{tabular}
   \end{center}
 \end{figure}
+
+where
+
+\begin{align}
+\text{MSTreatment} = TODO
+\qquad \qquad
+\text{MSError} = TODO
+\qquad \qquad
+S_{xx} = TODO
+\end{align}
 
 ### Nonparametric tests
 

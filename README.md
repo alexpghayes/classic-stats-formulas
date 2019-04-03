@@ -5,9 +5,13 @@
 
 This repository contains a reference sheet `hypothesis-tests-reference.pdf`, which lists formulas you need to know for some classical hypothesis tests, and `intro-to-hypothesis-testing.pdf`, some lecture notes that I use when introducing students to testing for the first time. 
 
-The reference sheet is a work in progress, but has this flavor:
+The reference sheet is a work in progress. For a test, here's the section on one-samples tests:
 
-![screenshot of reference sheet](figures/screenshot.png)
+![one sample test reference](figures/screenshot.png)
+
+For two samples tests we currently have:
+
+![two sample test reference](figures/screenshot.png)
 
 The reference sheet is mostly for my students to use, as the courses I TA don't require a textbook and they spend way too much time looking for these formulas.
 

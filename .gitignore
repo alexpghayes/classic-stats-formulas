@@ -1,7 +1,7 @@
 .Rhistory
 .RData
 .Rproj.user
-.Thumbs.db
+Thumbs.db
 *.tex
 *.log
 *_files

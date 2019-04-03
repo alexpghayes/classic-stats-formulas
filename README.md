@@ -11,7 +11,7 @@ The reference sheet is a work in progress. For a test, here's the section on one
 
 For two samples tests we currently have:
 
-![two sample test reference](figures/screenshot.png)
+![two sample test reference](figures/screenshot2.png)
 
 The reference sheet is mostly for my students to use, as the courses I TA don't require a textbook and they spend way too much time looking for these formulas.
 

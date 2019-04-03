@@ -39,17 +39,18 @@ header-includes:
     $t_{n-1}$ &
     $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
     
-    TODO &
+    chi-square test for variance &
     $\mu, \sigma^2$ unknown &
     $H_0: \sigma^2 = \sigma^2_0$ &
-    $TODO = \displaystyle {(n - 1) \cdot s^2 \over \sigma^2_0}$ &
+    $T = \displaystyle {(n - 1) \cdot s^2 \over \sigma^2_0}$ &
     $\chi^2_{n-1}$ &
     TODO \\
     
     sign test &
-    none & $H_0: m = m_0$ &
-    $B_\text{obs} = \sum_i I_{X_i > m_0}$ &
-    Binomial($\sum_i I_{X_i \neq m_0}, \frac 12$) &
+    none &
+    $H_0: m = m_0$ &
+    $B_\text{obs} = \sum_i I_{x_i > m_0}$ &
+    Binomial($\sum_i I_{x_i \neq m_0}, \frac 12$) &
     $2 \cdot \min(P(B \ge B_\text{obs}), P(B \le B_\text{obs}))$
     \end{tabular}
   \end{center}
@@ -138,15 +139,15 @@ Suppose $x_i$ is paired with $y_i$. Then let $d_i = x_i - y_i$.
     paired t-test & 
     $\mu, \sigma^2$ unknown &
     $H_0: \mu_1 - \mu_2 = \delta_0$ &
-    $T_\text{obs} = \displaystyle {\bar d - \mu_0 \over {s \over \sqrt n}}$ & $t_{n-1}$ &
+    $T_\text{obs} = \displaystyle {\bar d - \mu_0 \over {s_d \over \sqrt n}}$ & $t_{n-1}$ &
     $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
     
     paired sign test &
     none &
     $H_0: m_1 - m_2 = \delta_0$ &
-    TODO & 
-    TODO &
-    TODO
+    $B_\text{obs} = \sum_i I_{d_i > \delta_0}$ &
+    Binomial($\sum_i I_{d_i \neq \delta_0}, \frac 12$) &
+    $2 \cdot \min(P(B \ge B_\text{obs}), P(B \le B_\text{obs}))$
     
     \end{tabular}
   \end{center}

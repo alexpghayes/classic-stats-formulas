@@ -84,7 +84,7 @@ header-includes:
     $H_0: \mu_1 - \mu_2 = \delta_0$ &
     $T_\text{obs} = \displaystyle {(\bar x - \bar y) - \delta_0 \over 
       s_\text{pooled} \sqrt{{1 \over n_1} + {1 \over n_2}}}$ &
-    $t_{n-1}$ &
+    $t_{n_1 + n_2 - 2}$ &
     $2 \cdot P(t_{n_1 + n_2 - 2} < -|T_\text{obs}|)$ \\
     
     welch's t-test &

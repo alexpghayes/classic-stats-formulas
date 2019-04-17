@@ -139,7 +139,7 @@ Suppose $x_i$ is paired with $y_i$. Then let $d_i = x_i - y_i$.
     paired t-test & 
     $\mu, \sigma^2$ unknown &
     $H_0: \mu_1 - \mu_2 = \delta_0$ &
-    $T_\text{obs} = \displaystyle {\bar d - \mu_0 \over {s_d \over \sqrt n}}$ & $t_{n-1}$ &
+    $T_\text{obs} = \displaystyle {\bar d - \delta_0 \over {s_d \over \sqrt n}}$ & $t_{n-1}$ &
     $2 \cdot P(t_{n-1} < -|T_\text{obs}|)$ \\
     
     paired sign test &

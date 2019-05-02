@@ -155,36 +155,69 @@ Suppose $x_i$ is paired with $y_i$. Then let $d_i = x_i - y_i$.
 
 ### Related to linear regression and ANOVA
 
-The tests for $\beta_0$ and $\beta_1$ are for simple linear regression only.
+
+A one-way ANOVA table looks like
 
 \begin{figure}[H]
   \begin{center}
     \begin{tabular}{lccccc}
     
-    name & null hypothesis & test statistic & null distribution & p-value (two sided) \\
+    source & df & SS & MS & F & p-value \\
+    \hline
+    
+    treatment &
+    $k - 1$ &
+    $\text{SSTreatment}$ &
+    $\text{MSTreatment} = {\text{SSTreatment} \over k - 1}$ &
+    ${\text{MSTreatment} \over \text{MSError}}$ &
+    $P(F_{k - 1, N - k} > F_\text{obs})$ \\
+    
+    error &
+    $N - k$ &
+    $\text{SSError}$ &
+    $\text{MSError} = {\text{SSError} \over N - k}$ \\
+    
+    total &
+    $N - 1$ &
+    $\text{SSTotal}$
+    
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+
+where
+
+\begin{align}
+\text{SSTreatment} 
+&= \sum_{i=1}^k \sum_{j=1}^{n_i} (\bar y_{i \cdot} - \bar y_{\cdot \cdot})^2 
+= \sum_{i=1}^k n_i (\bar y_{i \cdot} - \bar y_{\cdot \cdot})^2 \\
+\text{SSError} 
+&= \sum_{i=1}^k \sum_{j=1}^{n_i} (y_{ij} - \bar y_{i \cdot})^2
+= \sum_{i=1}^k (n_i - 1) s^2_i \\
+\text{SSTotal} 
+&= \text{SSTreatment} + \text{SSError}
+= \sum_{i=1}^k \sum_{j=1}^{n_i} (y_{ij} - \bar y_{\cdot \cdot})^2
+\end{align}
+
+We use this to compare group means (i.e. categorical predictor). When we have continuous predictors we use simple linear regression which results in the following:
+
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & null hypothesis & test statistic & null distribution & p-value \\
      \hline
-    
-    one-way anova / f-tests &
-    $H_0: \mu_1 = ... = \mu_k$ &
-    $F_\text{obs} = {\text{MSTreatment} \over \text{MSError}}$ &
-    $F_{k - 1, n - k}$ &
-    $P(F_{k - 1, n - k} > F_\text{obs})$ \\
-    
-    tukey's honestly significant differences &
-    TODO &
-    TODO &
-    TODO &
-    TODO \\
     
     t-test for $\beta_0$ &
     $H_0: \beta_0 = c$ &
-    $T_\text{obs} = \displaystyle {\hat \beta_0 - c \over \hat \sigma \sqrt{\frac 1n + {\bar x^2 \over S_{xx}}}}$ &
+    $T_\text{obs} = \displaystyle {\hat \beta_0 - c \over \hat \sigma \sqrt{\frac 1n + \bar x^2 / \sum_{i=1}^n (x_i - \bar x)^2 }}$ &
     $t_{n-2}$ &
     $2 \cdot P(T < -|T_\text{obs}|)$ \\
     
     t-test for $\beta_1$ &
     $H_0: \beta_1 = c$ &
-    $T_\text{obs} = \displaystyle {\hat \beta_1 - c \over \sqrt{\hat \sigma^2 / S_{xx}}}$ &
+    $T_\text{obs} = \displaystyle {\hat \beta_1 - c \over \hat \sigma / \sqrt{\sum_{i=1}^n (x_i - \bar x)^2}}$ &
     $t_{n-2}$ &
     $2 \cdot P(T < -|T_\text{obs}|)$ \\
     
@@ -198,15 +231,56 @@ The tests for $\beta_0$ and $\beta_1$ are for simple linear regression only.
   \end{center}
 \end{figure}
 
-where
+Miscelleanous simple linear regression formulas not from hypothesis tests
 
 \begin{align}
-\text{MSTreatment} = TODO
-\qquad \qquad
-\text{MSError} = TODO
-\qquad \qquad
-S_{xx} = TODO
+y_i &= \beta_0 + \beta_1 x_i + \varepsilon_i \qquad \varepsilon_i \sim \textrm{Normal}(0, \sigma^2) \\
+\rho &= {
+  \sum_{i=1}^n (x_i - \bar x) (y_i - \bar y) \over
+  \sqrt{\sum_{i=1}^n (x_i - \bar x)^2}
+  \sqrt{\sum_{i=1}^n (y_i - \bar y)^2}} 
+  = {s_{xy} \over s_x s_y} \\
+\hat \beta_1 &= {
+  \sum_{i=1}^n (x_i - \bar x) (y_i - \bar y) \over 
+  \sum_{i=1}^n (x_i - \bar x)^2}
+  = \rho \cdot {s_y \over s_x} \\
+\hat \beta_0 &= \hat y - \hat \beta_1 \bar x \\
+\hat y_i &= \hat \beta_0 + \hat \beta_1 x_i \\
+e_i &= y_i - \hat y_i \\
+\text{SSE} &= \sum_{i=1}^n (y_i - \hat y_i)^2 \\
+\hat \sigma^2 &= \text{MSE} = {\sum_{i=1}^n (y_i - \hat y_i)^2 \over n - 2} 
 \end{align}
+
+Confidence intervals for means and future predictions at $x^*$ are given by
+
+\begin{align}
+TODO
+\end{align}
+
+### Post-hoc tests for ANOVA
+
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{lccccc}
+    
+    name & null hypothesis & test statistic & null distribution & p-value \\
+     \hline
+     
+    linear contrast on group means &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
+    
+    tukey's honestly significant differences &
+    TODO &
+    TODO &
+    TODO &
+    TODO \\
+    
+    \end{tabular}
+  \end{center}
+\end{figure}
 
 ### Nonparametric tests
 
